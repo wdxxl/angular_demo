@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<body ng-app="myApp">
+  <wdxxl-test-directive></wdxxl-test-directive>
+  <div wdxxl-test-directive></div>
+  <div class="wdxxl-test-directive"></div>
+  <!-- directive: wdxxl-test-directive -->
+<p>
+<script>
+var app = angular.module("myApp", []);
+app.directive("wdxxlTestDirective", function() {
+    return {
+        restrict : "ECAM",
+        replace : true,
+        template : "<h1>Made by a directive!</h1>"
+    };
+});
+</script>
+</body>
+</html>
