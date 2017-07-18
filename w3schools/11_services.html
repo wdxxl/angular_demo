@@ -1,0 +1,39 @@
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <script>
+    var app = angular.module('myApp', []);
+    app.service('hexafy', function(){
+      this.myFunc = function (x){
+        return x.toString(16);
+      }
+    });
+    app.controller('myCtrl', function($scope, $location, $http, $timeout, $interval, hexafy) {
+        $scope.myUrl = $location.absUrl();
+        $http.get("http://localhost:8080/greeting").then(function(response) {
+          $scope.myWelcome = response.data;
+        });
+        $scope.myTimeout = "hello World";
+        $timeout(function () {
+            $scope.myTimeout = "hello World after 2000";
+        }, 2000);
+
+        $scope.myInterval = new Date().toLocaleTimeString();
+        $interval(function () {
+            $scope.myInterval = new Date().toLocaleTimeString();
+        }, 1000);
+
+        $scope.hex = hexafy.myFunc(255);
+    });
+  </script>
+</head>
+<body>
+  <div ng-app="myApp" ng-controller="myCtrl">
+    <h2>$location: {{myUrl}}</h2>
+    <h2>$http: {{myWelcome}}</h2>
+    <h2>$timeout: {{myTimeout}}</h2>
+    <h2>$interval: {{myInterval}}</h2>
+    <h2>hexafy: {{hex}}</h2>
+  </div>
+</body>
+</html>

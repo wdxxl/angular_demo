@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<style>
+input.ng-invalid {
+    background-color: pink;
+}
+input.ng-valid {
+    background-color: lightgreen;
+}
+</style>
+<div ng-app="" >
+  <form name="myForm">
+    <input type="text" name="myInput" ng-model="myInput" required/><br><br>
+    <input type="email" name="myEmail" ng-model="myEmail"/><br><br>
+    <input name="myName" ng-model="myName" required>
+    <span ng-show="myForm.myName.$touched && myForm.myName.$invalid">The name is required.</span>
+  </form>
+  <p>The text input's valid state is:{{myForm.myInput.$valid}}</p>
+  <p>The email input's valid state is:{{myForm.myEmail.$valid}}</p>
+</div>
+</body>
+</html>

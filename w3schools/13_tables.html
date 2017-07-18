@@ -1,0 +1,50 @@
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <style>
+    table, th , td {
+      border: 1px solid grey;
+      border-collapse: collapse;
+      padding: 5px;
+    }
+    table tr:nth-child(odd) {
+      background-color: #f1f1f1;
+    }
+    table tr:nth-child(even) {
+      background-color: #ffffff;
+    }
+  </style>
+  <script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope, $http) {
+        $http.get("http://localhost:8080/greeting").then(function mySuccess(response) {
+            $scope.myWelcome = response.data;
+          },function myError(response) {
+            $scope.myWelcome = response.statusText;
+          });
+    });
+  </script>
+</head>
+<body>
+  <div ng-app="myApp" ng-controller="myCtrl">
+    <table>
+      <tr ng-repeat="x in myWelcome | orderBy : 'name'">
+        <td>{{ $index + 1 }}</td>
+        <td>{{ x.id }}</td>
+        <td>{{ x.name | uppercase}}</td>
+      </tr>
+    </table>
+    <br>
+    <table>
+      <tr ng-repeat="x in myWelcome | orderBy : 'name'">
+        <td ng-if="$odd" style="background-color:#abe2a4">{{ $index + 1 }}</td>
+        <td ng-if="$even">{{ $index + 1 }}</td>
+        <td ng-if="$odd" style="background-color:#abe2a4">{{ x.id }}</td>
+        <td ng-if="$even">{{ x.id }}</td>
+        <td ng-if="$odd" style="background-color:#abe2a4">{{ x.name }}</td>
+        <td ng-if="$even">{{ x.name }}</td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+<div ng-app="">
+  <form>
+    Check to Show a header:
+    <input type="checkbox" ng-model="myCheckbox"/>
+    <br>
+    Pick a radio topic
+    <input type="radio" ng-model="myRadio" value="dogs">Dogs
+    <input type="radio" ng-model="myRadio" value="tuts">Tutorials
+    <input type="radio" ng-model="myRadio" value="cars">Cars
+    <br>
+    Pick a option topic
+    <select ng-model="mySelect">
+      <option value="">
+      <option value="dogs">Dogs
+      <option value="tuts">Tutorials
+      <option value="cars">Cars
+    </select>
+  </form>
+  <h1 ng-show="myCheckbox">My Header</h1>
+  <div ng-switch="myRadio">
+    <div ng-switch-when ="dogs"><h1>Dogs</h1></div>
+    <div ng-switch-when ="tuts"><h1>Tutorials</h1></div>
+    <div ng-switch-when ="cars"><h1>Cars</h1></div>
+    <div ng-switch-default><h1>Checkbox default</h1></div>
+  </div>
+  <div ng-switch="mySelect">
+    <div ng-switch-when ="dogs"><h1>Dogs</h1></div>
+    <div ng-switch-when ="tuts"><h1>Tutorials</h1></div>
+    <div ng-switch-when ="cars"><h1>Cars</h1></div>
+    <div ng-switch-default><h1>Select default</h1></div>
+  </div>
+</div>
+</body>
+</html>

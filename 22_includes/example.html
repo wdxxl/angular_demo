@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="customersCtrl">
+  <div ng-include="'myTable.html'"></div>
+</div>
+
+<script>
+  var app = angular.module('myApp', []);
+  app.controller('customersCtrl', function($scope, $http) {
+    $scope.names =[
+      {name:'Jani', country:'Norway'},
+      {name:'Carl', country:'Sweden'},
+      {name:'Margareth', country:'England'},
+      {name:'Hege', country:'Norway'},
+      {name:'Joe', country:'Denmark'},
+      {name:'Gustav', country:'Sweden'},
+      {name:'Birgit', country:'Denmark'},
+      {name:'Mary', country:'England'},
+      {name:'Kai', country:'Norway'}
+    ];
+  });
+</script>
+
+</body>
+</html>

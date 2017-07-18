@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<div ng-app="myApp" >
+  <form name="myForm">
+    <input type="text" name="myInput" ng-model="myInput" required  my-directive/><br><br>
+    <p>The input's valid state is:</p>
+    <h1>{{myForm.myInput.$valid}}</h1>
+    <p>The input field must contain the character "e" to be consider valid.</p>
+  </form>
+  <script>
+    var app = angular.module('myApp', []);
+    app.directive('myDirective', function(){
+      return {
+        require: 'ngModel',
+        link: function(scope, element, attr, mCtrl) {
+          function myValidation(value) {
+            if(value.indexOf("e") > -1) {
+              mCtrl.$setValidity('charE', true);
+            }else{
+              mCtrl.$setValidity('charE', false);
+            }
+            return value;
+          }
+          mCtrl.$parsers.push(myValidation);
+        }
+      };
+    });
+  </script>
+</div>
+</body>
+</html>
